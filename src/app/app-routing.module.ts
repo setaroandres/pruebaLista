@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'agregar-tarea',
+    loadChildren: () => import('./agregar-tarea/agregar-tarea.module').then( m => m.AgregarTareaPageModule)
+  },
+  {
+    path: 'interna-tarea/:id',
+    loadChildren: () => import('./interna-tarea/interna-tarea.module').then( m => m.InternaTareaPageModule)
+  },
 ];
 
 @NgModule({

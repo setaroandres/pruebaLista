@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{titulo}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <p>Titulo: {{titulo}} </p>
+                <p>Fecha de creacion: {{fechaCreacion || date}}</p>
+                <p>Descripcion: {{descripcion}}</p>
+                <p>Prioridad: {{prioridad}}</p>
+                <p>Terminado: {{terminado}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

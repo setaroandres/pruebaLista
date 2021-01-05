@@ -9,18 +9,59 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+
 /* Core CSS required for Ionic components to work properly */
+
 @import "~@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
+
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
+
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+body {
+    font-size: 12px!important;
+}
+
+ion-content {
+    --background: #fff;
+}
+
+ion-button {
+    font-size: 9px;
+    width: 100%;
+}
+
+ion-select {
+    background-color: #222428;
+    border-radius: 50px;
+    font-size: 11px;
+    &::part(placeholder) {
+        opacity: 1;
+        font-size: 11px;
+    }
+}
+
+ion-item {
+    --background: transparent;
+}
+
+ion-checkbox {
+    margin: -8px;
+    svg {
+        width: 50px;
+    }
+}
+
+.select-placeholder {
+    --color: #fff;
+}
