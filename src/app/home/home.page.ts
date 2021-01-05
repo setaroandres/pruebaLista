@@ -8,7 +8,6 @@ interface TareaData {
   Titulo: string;
   Descripcion: string;
   Prioridad: string;
-  //FechaDeCreacion: Date;
 
 }
 
@@ -23,7 +22,6 @@ export class HomePage {
   tareaData: TareaData;
   tareaForm: FormGroup;
 
-  //date: number = Date.now();
   prioridadEdit: string;
   editTerminado: boolean;
   Terminado: boolean;
@@ -41,21 +39,10 @@ export class HomePage {
     public modalController: ModalController
   ) {
     this.tareaData = {} as TareaData;
-    //this.firebaseService.firestore.collection("ToDoList").ref.orderBy("Descripcion", "asc")
     
   }
 
   ngOnInit() {
-
-    //console.log("date: ", this.date);
-
-    
-
-    /*this.tareaForm = this.fb.group({
-      Titulo: ['', [Validators.required]],
-      Descripcion: ['', [Validators.required]],
-      Prioridad: ['', [Validators.required]]
-    })*/
 
     this.firebaseService.leer_items(this.order,this.cond).subscribe(data => {
 
@@ -75,7 +62,6 @@ export class HomePage {
 
 
       })
-      //console.log(this.tareasList);
 
     });
   }
@@ -96,34 +82,26 @@ export class HomePage {
     record.isEdit = true;
     record.EditTitulo = record.Titulo;
     record.EditDesc = record.Descripcion;
-    //record.EditPrior = record.Prioridad;
     record.prioridadEdit = record.Prioridad;
     record.editTerminado = record.Terminado;
-
-    //console.log(record.Prioridad + ' ' + record.Titulo);
   }
 
   ActualizarTarea(recordRow) {
     let record = {};
     record['Titulo'] = recordRow.EditTitulo;
     record['Descripcion'] = recordRow.EditDesc;
-    //record['Prioridad'] = recordRow.EditPrior;
     record['Prioridad'] = recordRow.prioridadEdit;
     record['Terminado'] = recordRow.editTerminado;
-
-    //console.log("Datos en actualizar: ", recordRow.EditTitulo + ' ' + recordRow.EditDesc + ' ' + recordRow.prioridadEdit + ' ' + recordRow.editTerminado);
 
     this.firebaseService.actualizar_item(recordRow.id, record);
     recordRow.isEdit = false;
   }
 
   getValue(selectValue) {
-    //console.log(selectValue);
     this.prioridadEdit = selectValue;
   }
 
   getValueTerminado(terminadoValue) {
-    //console.log(terminadoValue);
     this.editTerminado = terminadoValue;
   }
 
@@ -134,9 +112,6 @@ export class HomePage {
 
   orderByEstado(order,cond) {
     this.firebaseService.ordenar_estado(order,cond).subscribe(data => {
-
-      //console.log('Data: from Firestore Estado: ', data )
-      //console.log('Data: from Firestore Estado: ', order )
 
       this.tareasList = data.map(e => {
         return {
@@ -149,7 +124,6 @@ export class HomePage {
           Terminado: e.payload.doc.data()['Terminado'],
         };
       })
-      //console.log(this.tareasList);
 
     });
   }
@@ -162,12 +136,9 @@ export class HomePage {
     else {
       this.filtradoPriori = true;
     } 
-    //console.log("FE: ", this.filtradoEstado);
 
     this.firebaseService.filterByFcn(item, cond).subscribe(data => {
       
-      //console.log('Data: from Firestore Estado: ', data )
-      //console.log('Data: from Firestore Estado: ', order )
 
       this.tareasList = data.map(e => {
         return {
@@ -180,7 +151,6 @@ export class HomePage {
           Terminado: e.payload.doc.data()['Terminado'],
         };
       })
-      //console.log(this.tareasList);
 
     });
   }
@@ -197,9 +167,6 @@ export class HomePage {
 
     this.firebaseService.remover(order,cond).subscribe(data => {
 
-      //console.log('Data: from Firestore Estado: ', data )
-      //console.log('Data: from Firestore Estado: ', order )
-
       this.tareasList = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -211,7 +178,6 @@ export class HomePage {
           Terminado: e.payload.doc.data()['Terminado'],
         };
       })
-      //console.log(this.tareasList);
 
     });
   }
